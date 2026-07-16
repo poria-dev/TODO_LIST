@@ -1,0 +1,482 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+body {
+    background-color: #0b0f19;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f8fafc;
+    overflow-x: hidden;
+    position: relative;
+    padding: 24px;
+}
+
+/* حباب‌های درخشان مدرن در پس‌زمینه */
+.glow-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: 0.12;
+}
+
+.blob-1 {
+    background: #6366f1;
+    top: -10%;
+    right: -10%;
+}
+
+.blob-2 {
+    background: #a855f7;
+    bottom: -10%;
+    left: -10%;
+}
+
+/* کارت اصلی شیشه‌ای (Glassmorphism) */
+.all {
+    background: rgba(17, 24, 39, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+    max-width: 440px;
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* هدر اپلیکیشن */
+.app-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 20px;
+}
+
+.logo-wrapper {
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    padding: 10px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-text h1 {
+    font-size: 18px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff 30%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-text p {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+/* ساختار ورودی متنی */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    right: 18px;
+    width: 20px;
+    height: 20px;
+    color: #64748b;
+    pointer-events: none;
+    transition: color 0.3s;
+}
+
+#inp {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 16px 48px 16px 16px;
+    /* پدینگ راست برای قرارگیری آیکون */
+    border-radius: 16px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#inp:focus {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+#inp:focus+.input-icon {
+    color: #818cf8;
+}
+
+#inp::placeholder {
+    color: #64748b;
+}
+
+/* دکمه‌ها */
+.btns {
+    display: flex;
+    gap: 12px;
+}
+
+button {
+    flex: 1;
+    border: none;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+button svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* دکمه افزودن */
+.btn {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(99, 102, 241, 0.4);
+    background: linear-gradient(135deg, #818cf8 0%, #4f46e5 100%);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+/* دکمه ویرایش */
+.btn2 {
+    display: none;
+    /* این مورد در JS فعال می‌شود */
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.25);
+}
+
+.btn2:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(16, 185, 129, 0.4);
+    background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+}
+
+
+article {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 16px 20px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.3s, border-color 0.3s;
+
+
+    animation: slideIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    overflow: hidden;
+}
+
+
+article[data-status="on"] {
+    background: rgba(255, 193, 7, 0.03);
+    border-color: rgba(255, 193, 7, 0.15);
+
+
+    animation: starPulse 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+
+@keyframes starPulse {
+    0% {
+        transform: translateY(-15px) scale(0.95);
+        opacity: 0.5;
+        box-shadow: 0 0 0px rgba(255, 193, 7, 0);
+    }
+
+    50% {
+        /* ایجاد یک افکت ضربان (Pulse) ملایم در وسط راه */
+        transform: translateY(0) scale(1.03);
+        box-shadow: 0 0 15px rgba(255, 193, 7, 0.15);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        box-shadow: 0 0 0px rgba(255, 193, 7, 0);
+    }
+}
+
+article:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+article h5 {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: #e2e8f0;
+    word-break: break-word;
+    line-height: 1.6;
+    text-align: right;
+}
+
+/* دکمه‌های کنترل تسک‌ها (ویرایش و حذف) */
+article span.action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* ترفند مهم: غیرفعال کردن کلیک مستقیم روی SVG تا والد آن (span) تارگت کلیک در JS بماند */
+article span.action-btn svg,
+article span.action-btn svg path {
+    pointer-events: none;
+    width: 16px;
+    height: 16px;
+}
+
+/* آیکون حذف */
+article span.action-btn.delete {
+    color: #f87171;
+}
+
+article span.action-btn.delete:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.3);
+    transform: scale(1.08);
+}
+
+/* آیکون ویرایش */
+article span.action-btn.edit {
+    color: #60a5fa;
+}
+
+article span.action-btn.edit:hover {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
+    transform: scale(1.08);
+}
+
+article span.action-btn:active {
+    transform: scale(0.95);
+}
+
+/* پاپ‌آپ‌های سیستم (Toasts) */
+.alertclear,
+.alertclear2 {
+    position: fixed;
+    top: 24px;
+    border-radius: 18px;
+    color: #ffffff;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1000;
+}
+
+.alert-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+}
+
+.alert-icon {
+    width: 22px;
+    height: 22px;
+}
+
+/* دکمه حذف قرمز */
+.alertclear {
+    right: -100%;
+    background: rgba(220, 38, 38, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+/* دکمه افزودن سبز */
+.alertclear2 {
+    left: -100%;
+    background: rgba(5, 150, 105, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(5, 150, 105, 0.3);
+}
+
+.alert-content h2 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.bg {
+    background-color: #4f46e5 !important;
+}
+
+.star {
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: 0.4s;
+
+    &:hover {
+        scale: 1.1;
+    }
+
+    >img {
+        width: 25px;
+    }
+}
+
+.active {
+
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: 0.4s;
+
+    &:hover {
+        scale: 1.1;
+    }
+
+    >img {
+        width: 25px;
+    }
+}
+
+
+
+
+.app-top-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    order: -1;
+    position: sticky;
+    top: 0;
+    background: transparent;
+    z-index: 10;
+    padding-bottom: 8px;
+}
+
+
+.all {
+    background: rgba(17, 24, 39, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+    max-width: 440px;
+
+
+    max-height: 85vh;
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.all::-webkit-scrollbar {
+    width: 6px;
+}
+
+.all::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.all::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.all::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+
+article {
+    order: 0;
+    margin-bottom: 4px;
+}
+
+
+.line{
+    text-decoration: line-through;
+   
+}
